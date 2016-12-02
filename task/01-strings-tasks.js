@@ -205,7 +205,20 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+	var str="";
+	for(var i=0; i < height; i++){
+		for(var j=0; j <= width; j++){
+			if ( j == 0 &&  i == 0){ str+="┌"; }
+			else if( j == width-1 &&  i == 0 ) { str+="┐"; }
+			else if( j == 0 &&  i == height-1 ) { str+="└"; }
+			else if( j == width-1 &&  i == height-1 ) { str+="┘"; }
+			else if ( j == width ) { str += "\n"; }
+			else if( i == 0 || i == height-1){ str+="─";}
+			else if( j == 0  || j == width-1) { str += "│";}
+			else { str+=" "; }
+		}
+	}
+	return str;
 }
 
 
@@ -225,7 +238,13 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-	throw new Error('Not implemented');
+	var arr = str.split("");
+	for( var i=0; i< arr.length; i++){
+		var code = arr[i].charCodeAt(0);
+		if((code > 64 && code < 78) || (code > 96 && code < 110 ) ){ arr[i] =  String.fromCharCode(code+13);}
+		else if ((code > 77 && code < 91) || (code > 109 && code < 123 ) ){ arr[i] =  String.fromCharCode(code-13);}
+	}
+	return arr.join("");
 }
 
 /**
@@ -242,7 +261,9 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-	throw new Error('Not implemented');
+	if( value && (typeof value == "string" || ( typeof value == "object" && value instanceof String) ))
+		{return true;}
+	else { return false;}
 }
 
 

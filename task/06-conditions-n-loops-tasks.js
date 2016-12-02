@@ -30,7 +30,12 @@
  *
  */
 function getFizzBuzz(num) {
-    throw new Error('Not implemented');
+    if(num%3 == 0 && num%5 == 0){
+        return "FizzBuzz";
+    }
+    else if( num%3 == 0 ){ return "Fizz";}
+    else if( num%5 == 0 ){ return "Buzz";}
+    else {return num;}
 }
 
 
@@ -46,7 +51,12 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    throw new Error('Not implemented');
+    var fact = 1, i =1;
+    while( i <= n){
+        fact*=i;
+        i++;
+    }
+    return fact;
 }
 
 
@@ -63,7 +73,12 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    throw new Error('Not implemented');
+    var sum = 0, i = n1;
+    while( i <= n2){
+        sum+=i;
+        i++;
+    }
+    return sum;
 }
 
 
@@ -82,7 +97,10 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
-    throw new Error('Not implemented');
+    if( a+b>c && b+c>a && c+a > b) {
+        return true;
+    }
+    return false;
 }
 
 
@@ -119,7 +137,12 @@ function isTriangle(a,b,c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+    if(rect1.top+rect1.height < rect2.top) {return false;}
+    else if ( rect1.top > rect2.top+rect2.height) {return false;}
+    else if ( rect1.left > rect2.left+rect2.width) {return false;}
+    else if ( rect1.left+rect1.width < rect2.left) {return false;}
+    else return true;
+
 }
 
 
@@ -150,7 +173,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    throw new Error('Not implemented');
+    return ( Math.sqrt ( Math.pow ( circle.center.x - point.x, 2) + Math.pow ( circle.center.y - point.y, 2 ))) < circle.radius;
 }
 
 
@@ -166,7 +189,21 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    str = str.split("");
+    for (var i = 0; i < str.length; i++){
+        var count = 1;
+        for ( var j = i+1; j < str.length; j++){
+            if(str[i]== str[j]){
+                str.splice(j,1);
+                count++;
+                j--;
+            }
+        }
+        if(count == 1){
+            return str[i];
+        }
+    }
+    return null;
 }
 
 
@@ -192,7 +229,11 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    var result = "";
+    (isStartIncluded) ? result = '[' : result = '(';
+    (a>b) ? result += b +", " + a : result += a+", " + b;
+    (isEndIncluded) ? result += ']' : result += ')';
+    return result;
 }
 
 
@@ -209,7 +250,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    return str.split("").reverse().join("");
 }
 
 
@@ -226,7 +267,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+   return Number(String(num).split("").reverse().join(""));
 }
 
 
@@ -270,7 +311,17 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    
+    do{
+        var sum =0;
+        while( num > 0){
+            sum+=num%10;
+            num = Math.floor(num/10);
+            
+        }
+        num = sum;
+    } while (num-10 > 0);
+    return sum;   
 }
 
 
@@ -356,7 +407,15 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    var str = [],r;
+    while( num >= n){
+        r = num%n;
+        str.push(r);
+        num = Math.floor(num/n) ;
+    }
+    str.push(Math.floor(num));
+    str = str.reverse();
+    return str.join("");
 }
 
 
@@ -396,6 +455,15 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
+    /*var rezult = [],sub = [];
+    for( var i = 0; i < m1.length; i++ ){
+        for( var j = 0; j < m1.length; j++){
+            sub.push(m1[i][j]*m2[j][i]);
+        }
+        rezult.push(sub);
+        sub = [];
+    }
+    return rezult;*/
     throw new Error('Not implemented');
 }
 

@@ -47,7 +47,9 @@ function getComposition(f,g) {
  *
  */
 function getPowerFunction(exponent) {
-    throw new Error('Not implemented');
+    return function(x){
+        return Math.pow(x,exponent);
+    }
 }
 
 
@@ -65,7 +67,17 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
-    throw new Error('Not implemented');
+    var arr = arguments;
+    if(arguments.length > 0){
+        return function(x){
+            var result=0;
+            for (var i=0, stepen=arr.length-1; i<arr.length; i++,stepen--){
+                result+=arr[i]*Math.pow(x,stepen);
+            }
+            return result;
+        }
+    }
+    else {return null};
 }
 
 
@@ -171,7 +183,11 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-    throw new Error('Not implemented');
+    var count = 0, start = startFrom;
+    return function(){
+        if(count == 0){count++; return start; }
+        else {count++; return start+=1;}
+    }
 }
 
 
